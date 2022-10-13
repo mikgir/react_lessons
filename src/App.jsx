@@ -6,17 +6,22 @@ import {Form} from "./components/Form/Form";
 import {Count} from "./components/Count";
 import {Child} from "./components/Child";
 import {useState} from "react";
+import {Message} from "./components/Message/Message";
 
 
 export const App = () => {
     const [name, setName]= useState('geek')
     const [count, setCount]= useState(0)
+    const [text, setText]=useState('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, minima.')
 
     const handleChangeName = (event) => {
       setName(event.target.value)
     }
     return (
         <div className="App">
+            <h2>HW lesson 1</h2>
+            <Message name={name} text={text}/>
+            <hr/>
             <h2 style={{backgroundColor:'aliceblue'}}>Class Components</h2>
             <ClassCount count={10}/>
             <ClassForm/>
