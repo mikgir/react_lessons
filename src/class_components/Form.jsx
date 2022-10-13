@@ -3,7 +3,8 @@ import React from "react";
 export class Form extends React.Component {
     state = {
         count: 1,
-        name: 'geek'
+        name: 'geek',
+        arr: ['apple', 'melon', 'lemon']
     }
 
     handleChangeName = (event) => {
@@ -16,6 +17,9 @@ export class Form extends React.Component {
 
     render() {
         return <form onSubmit={this.handleSubmit}>
+            {this.state.arr.map((item, index)=>{
+                return <div key={index}>{item}</div>
+            })}
             <hr/>
             <input type={"text"} onChange={this.handleChangeName}/>
             <button>send form</button>

@@ -1,7 +1,9 @@
+import style from './Form.module.css'
+
 export const Form = () => {
     const count = 1
     const name = 'geek'
-    return <form>
+    return <form className={style.form}>
         <p>Count: {count}</p>
         <p>Name: {name}</p>
         <input type={"text"}/>

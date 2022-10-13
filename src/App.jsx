@@ -1,7 +1,8 @@
 import './App.css';
-import {Form} from "./components/Form";
+import './index.css';
 import {Form as ClassForm} from "./class_components/Form"
 import {Count as ClassCount} from "./class_components/Count";
+import {Form} from "./components/Form/Form";
 import {Count} from "./components/Count";
 import {Child} from "./components/Child";
 import {useState} from "react";
@@ -16,10 +17,12 @@ export const App = () => {
     }
     return (
         <div className="App">
-            <Form/>
-            <hr/>
+            <h2 style={{backgroundColor:'aliceblue'}}>Class Components</h2>
             <ClassCount count={10}/>
             <ClassForm/>
+            <hr/>
+            <h2>Func Components</h2>
+            <Form/>
             <hr/>
             <Count name={'geek'}/>
             <hr/>
