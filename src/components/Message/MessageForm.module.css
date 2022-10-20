@@ -1,0 +1,22 @@
+form {
+    width: 60rem;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+input{
+    width: 50rem;
+    height: 2rem;
+    margin: 5px;
+}
+.inputText {
+    height: 5rem;
+}
+button{
+    width: 50rem;
+    height: 3rem;
+    border-radius: 10px;
+
+}
