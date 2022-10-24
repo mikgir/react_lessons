@@ -1,5 +1,6 @@
 import './MessageForm.module.css'
 import {useState} from "react";
+import {Button, Input} from "@mui/material";
 
 
 export const MessageForm = ({onSubmit}) => {
@@ -16,12 +17,16 @@ export const MessageForm = ({onSubmit}) => {
     }
 
     return <form onSubmit={handleSubmit}>
-            <input type={"text"}
+            <Input sx={"width: 100%"}
+                variant={'outlined'}
+                   type={"text"}
                    value={value}
                    onChange={handleChange}
                    className={'inputText'}
                    placeholder={'message'}/>
-        <button>Send</button>
+        <Button variant={'contained'}
+                type={'submit'}
+        >Send</Button>
     </form>
 
 }
