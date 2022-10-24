@@ -2,34 +2,27 @@ import './App.css';
 import './index.css';
 
 import {useEffect, useState} from "react";
-import {MessageForm} from "./components/Message/MessageForm";
+import {MessageForm} from "./components/Form/MessageForm";
+import {AUTHORS} from "./utils/constants";
+import {MessageList} from "./components/Message/MessageList";
 
-
-const name = 'me';
-// const messages = [
-//     {
-//         sender: name,
-//         text: 'text1'
-//     },
-//     {
-//         sender: name,
-//         text: 'text2'
-//     },
-//     {
-//         sender: 'robot',
-//         text: 'message from robot'
-//     }
-// ]
 
 export const App = () => {
     const [messageList, setMessageList] = useState([])
 
     const sendMessage = (newText) => {
-        setMessageList([...messageList, {text: newText, sender: name}])
+        setMessageList([...messageList, {text: newText, sender: AUTHORS.human}])
+
     }
     useEffect(() => {
-        if (messageList[messageList.length - 1]?.sender === name) {
-            setMessageList([...messageList, {text: "hello friend", sender: "from robot"}])
+        let timeout;
+        if (messageList[messageList.length - 1]?.sender === AUTHORS.human) {
+            timeout = setTimeout(() => {
+                setMessageList([...messageList, {text: "hello friend", sender: AUTHORS.robot}])
+            }, 1500)
+        }
+        return ()=>{
+            clearTimeout(timeout)
         }
     }, [messageList])
 
@@ -37,14 +30,7 @@ export const App = () => {
     return (
         <div className="App">
             <div className={"chat_field"}>
-                <ul>
-                    {messageList.map((msg, index) => (
-                        <li key={index}>
-                            message: {msg.text}<br/>
-                            from: {msg.sender}
-                        </li>
-                    ))}
-                </ul>
+                <MessageList messageList={messageList}/>
                 <MessageForm onSubmit={sendMessage}/>
             </div>
         </div>
