@@ -1,4 +1,22 @@
 .App {
-  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+.chat_field {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+}
+.messageForm {
+  width: 70%;
+  margin: 0 auto;
+  padding: 10px 0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
 }
 
