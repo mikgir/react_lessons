@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {CHATS} from "../../utils/constants";
 import {Link, useParams} from "react-router-dom";
-import {Avatar, Button} from "@mui/material";
+import {Button} from "@mui/material";
 
 
 export const ChatList = () => {
@@ -11,33 +11,34 @@ export const ChatList = () => {
     const id = chatList.findIndex(x => x.id === chatId)
     return (
         <div style={{
-            height:'80vh',
+            height: '80vh',
             marginTop: '1rem',
             display: 'flex',
             flexDirection: 'row'
         }}>
             <div style={{
                 width: '30%',
-                backgroundColor: 'gray',
+                backgroundColor: 'aliceblue',
+                border: '1px solid blue'
             }}>
                 <h1 style={{
-                    textAlign:'center'
+                    textAlign: 'center'
                 }}>Chats</h1>
                 <ul style={{
-                    textAlign:'center'
+                    textAlign: 'center'
                 }}>
                     {chatList.map((chat, id) =>
-                        <li key={id}><Avatar/><Link to={`${id}`}>{chat.name}</Link></li>
+                        <li key={id}><Link to={`${id}`}>{chat.name}</Link></li>
                     )}
                 </ul>
-                <Button style={{color:'white'}} onClick={()=>{
-                    setChatList([...chatList,{id: id+1, name: 'newChat', messages: []}])
+                <Button style={{color: 'blue'}} onClick={() => {
+                    setChatList([...chatList, {id: id + 1, name: 'newChat', messages: []}])
                 }}>add chat</Button>
             </div>
             <div className={'chat_field'}>
                 {
                     chatId && chatList[chatId] ? <div>
-                        {chatList[chatId].messages.map((msg,idx)=>
+                        {chatList[chatId].messages.map((msg, idx) =>
                             <p key={idx}>{msg}</p>
                         )}
                     </div> : <h2>Select chat</h2>
