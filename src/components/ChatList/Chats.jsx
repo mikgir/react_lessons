@@ -1,10 +1,10 @@
 import {MessageList} from "../Message/MessageList";
 import {MessageForm} from "../Form/MessageForm";
-import {useEffect, useState} from "@types/react";
+import React, {useEffect, useState} from "react";
 import {AUTHORS} from "../../utils/constants";
 
 
-export const Chats = ({chat}) => {
+export const Chats = () => {
     const [messageList, setMessageList] = useState([])
 
     const sendMessage = (newText) => {

@@ -17,16 +17,17 @@ export const MessageForm = ({onSubmit}) => {
     }
 
     return <form onSubmit={handleSubmit}>
-            <Input sx={"width: 100%"}
-                variant={'outlined'}
-                   type={"text"}
-                   value={value}
-                   onChange={handleChange}
-                   className={'inputText'}
-                   placeholder={'message'}/>
+        <Input sx={"width: 100%"}
+               variant={'outlined'}
+               type={"text"}
+               value={value}
+               onChange={handleChange}
+               className={'inputText'}
+               placeholder={'message'}/>
         <Button variant={'contained'}
-                type={'submit'}
-        >Send</Button>
+                type={'submit'}>
+            Send
+        </Button>
     </form>
 
 }
