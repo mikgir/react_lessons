@@ -1,8 +1,9 @@
 import React from "react";
-
 import {Link, Outlet} from "react-router-dom";
-import {Avatar, List, ListItem} from "@mui/material";
-import {MessageForm} from "../Form/MessageForm";
+
+import './ChatList.module.css';
+import {Avatar} from "@mui/material";
+import {Form} from "../Form/Form";
 
 
 export const ChatList = ({chats, addChat, deleteChat}) => {
@@ -16,20 +17,32 @@ export const ChatList = ({chats, addChat, deleteChat}) => {
     }
     return (
         <>
-            <div className={'chats_menu'}>
-                <List>
+            <div style={{
+                width: '20%',
+                height: '100%',
+                alignItems: 'center',
+                padding: '10px',
+                border: '1px solid cadetblue',
+                backgroundColor: 'cadetblue'
+            }}>
+                <ul style={{}}>
                     {chats.map((chat) => (
-                        <Link to={`/chats/${chat.id}`} key={chat.id}>
-                            <ListItem>
-                                <Avatar/>
+                        <li key={chat.id} style={{
+                            padding: '10px',
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                        }}>
+                            <Avatar/>
+                            <Link to={`/chats/${chat.id}`}>
                                 {chat.name}
-                            </ListItem>
-                            <span onClick={()=>deleteChat(chat.id)}>X</span>
-                        </Link>
-
+                            </Link>
+                            <i onClick={() => deleteChat(chat.id)}>
+                                X
+                            </i>
+                        </li>
                     ))}
-                </List>
-                <MessageForm onSubmit={handleSubmit}/>
+                </ul>
+                <Form onSubmit={handleSubmit}/>
             </div>
             <Outlet/>
         </>

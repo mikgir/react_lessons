@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from "react";
 import {useParams, Navigate} from "react-router-dom";
 
 import {MessageList} from "../../components/MessageList/MessageList";
-import {MessageForm} from "../../components/Form/MessageForm";
+import {Form} from "../../components/Form/Form";
 import {AUTHORS} from "../../utils/constants";
 
 
@@ -41,9 +41,15 @@ export const Chat = ({messages, addMessage}) => {
         return <Navigate to='/chat' replace/>
     }
     return (
-        <div ref={wrapperRef}>
+        <div ref={wrapperRef} style={{
+            width:'80%',
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'flex-end',
+            padding:'20px'
+        }}>
             <MessageList messageList={messages[id]}/>
-            <MessageForm onSubmit={sendMessage}/>
+            <Form onSubmit={sendMessage}/>
         </div>
     )
 }

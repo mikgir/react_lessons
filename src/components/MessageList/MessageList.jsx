@@ -1,10 +1,13 @@
 import React from 'react'
-// import {Message} from "../Message/Message";
 
 export const MessageList = ({messageList}) => {
-    return <ul>
+    return <ul style={{
+        textDecoration:'none'
+    }}>
         {messageList.map((msg) => (
-            <li key={msg.id}>
+            <li key={msg.id} style={{
+                textDecoration:'none'
+            }}>
                 {msg.author} : {msg.text}
             </li>
         ))}
