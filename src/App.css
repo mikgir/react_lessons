@@ -37,16 +37,16 @@
 }
 
 .chat_field {
-    width: 70%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 15px;
+    justify-content: flex-end;
+    padding: 2rem;
 }
 
 .messageForm {
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     padding: 10px 0;
     display: flex;

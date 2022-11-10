@@ -17,8 +17,7 @@ export const MessageForm = ({onSubmit}) => {
     }
 
     return <form onSubmit={handleSubmit}>
-        <Input sx={"width: 100%"}
-               variant={'outlined'}
+        <Input variant={'outlined'}
                type={"text"}
                value={value}
                onChange={handleChange}
