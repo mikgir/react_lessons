@@ -21,22 +21,22 @@ export const Chat = ({messages, addMessage}) => {
             text: text,
             id: `msg-${Date.now()}`
         }, id )
-    }
-    useEffect(() => {
-        const lastMessage = messages[id]?.[messages[id]?.length -1]
-        if (lastMessage?.author === AUTHORS.human) {
-            timeout.current = setTimeout(() => {
-                addMessage({
-                    author: AUTHORS.robot,
-                    text: 'hello friend',
-                    id: `msg-${Date.now()}`
-                }, id )
-            }, 1500)
-        }
-        return () => {
-            clearTimeout(timeout.current)
-        }
-    }, [messages])
+    };
+    // useEffect(() => {
+    //     const lastMessage = messages[id]?.[messages[id]?.length -1];
+    //     if (lastMessage?.author === AUTHORS.human) {
+    //         timeout.current = setTimeout(() => {
+    //             addMessage({
+    //                 author: AUTHORS.robot,
+    //                 text: 'hello friend',
+    //                 id: `msg-${Date.now()}`
+    //             }, id )
+    //         }, 1500)
+    //     }
+    //     return () => {
+    //         clearTimeout(timeout.current)
+    //     }
+    // }, [messages]);
 
     if (!messages[id]) {
         return <Navigate to='/chat' replace/>

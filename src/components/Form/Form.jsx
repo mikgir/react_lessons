@@ -1,5 +1,5 @@
 import './Form.module.css'
-import {useState} from "react";
+import React, {useState} from "react";
 import {Button, Input} from "@mui/material";
 
 
@@ -16,7 +16,8 @@ export const Form = ({onSubmit}) => {
         setValue(event.target.value)
     }
 
-    return <form onSubmit={handleSubmit}>
+    return (
+        <form onSubmit={handleSubmit}>
         <Input variant={'outlined'} sx={{
             width: '80%'
         }}
@@ -30,5 +31,5 @@ export const Form = ({onSubmit}) => {
             Add
         </Button>
     </form>
-
+    )
 }

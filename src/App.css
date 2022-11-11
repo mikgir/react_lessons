@@ -25,6 +25,7 @@ li, a {
     background-color: black;
     border: 1px solid gray;
     color: white;
+    align-items: center;
 }
 
 

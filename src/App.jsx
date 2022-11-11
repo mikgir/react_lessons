@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Provider} from "react-redux";
 
 import './App.css';
 import './index.css';
@@ -10,6 +11,7 @@ import {ChatList} from "./components/ChatList/ChatList";
 import {NotFound} from "./components/pages/NotFoundPage";
 import {Chat} from "./screens/Chat/Chat";
 import {ThemeContext} from "./utils/ThemeContext";
+import {store} from "./store";
 
 const initChats = [
     {
@@ -51,21 +53,23 @@ export const App = () => {
     }
     return (
         <div className="App">
-            <ThemeContext.Provider value={{theme, changeTheme: toggleTheme}}>
-                <BrowserRouter>
-                    <Routes>
-                        <Route path='/' element={<Header/>}>
-                            <Route index element={<Home/>}/>
-                            <Route path='/profile' element={<Profile/>}/>
-                            <Route path='/chats'
-                                   element={<ChatList chats={chats} addChat={addChat} deleteChat={deleteChat}/>}>
-                                <Route path=':id' element={<Chat messages={messages} addMessage={addMessage}/>}/>
+            <Provider store={store}>
+                <ThemeContext.Provider value={{theme, changeTheme: toggleTheme}}>
+                    <BrowserRouter>
+                        <Routes>
+                            <Route path='/' element={<Header/>}>
+                                <Route index element={<Home/>}/>
+                                <Route path='/profile' element={<Profile/>}/>
+                                <Route path='/chats'
+                                       element={<ChatList chats={chats} addChat={addChat} deleteChat={deleteChat}/>}>
+                                    <Route path=':id' element={<Chat messages={messages} addMessage={addMessage}/>}/>
+                                </Route>
+                                <Route path='*' element={<NotFound/>}/>
                             </Route>
-                            <Route path='*' element={<NotFound/>}/>
-                        </Route>
-                    </Routes>
-                </BrowserRouter>
-            </ThemeContext.Provider>
+                        </Routes>
+                    </BrowserRouter>
+                </ThemeContext.Provider>
+            </Provider>
         </div>
     );
 }
