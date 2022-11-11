@@ -22,8 +22,8 @@ li, a {
 .menu_list {
     width: 10%;
     height: 100%;
-    background-color: cadetblue;
-    border: 1px solid blue;
+    background-color: black;
+    border: 1px solid gray;
     color: white;
 }
 

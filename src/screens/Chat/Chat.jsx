@@ -1,16 +1,17 @@
-import React, {useEffect, useRef} from "react";
+import React, {useContext, useEffect, useRef} from "react";
 import {useParams, Navigate} from "react-router-dom";
 
 import {MessageList} from "../../components/MessageList/MessageList";
 import {Form} from "../../components/Form/Form";
 import {AUTHORS} from "../../utils/constants";
+import {ThemeContext} from "../../utils/ThemeContext";
 
 
 export const Chat = ({messages, addMessage}) => {
     const {id} = useParams()
-    // const [messages, setMessages] = useState(initMessages)
     const timeout = useRef()
     const wrapperRef = useRef()
+    const {theme}=useContext(ThemeContext)
 
 
 
@@ -46,7 +47,8 @@ export const Chat = ({messages, addMessage}) => {
             display:'flex',
             flexDirection:'column',
             justifyContent:'flex-end',
-            padding:'20px'
+            padding:'20px',
+            backgroundColor: theme === 'dark'? 'black':'whitesmoke'
         }}>
             <MessageList messageList={messages[id]}/>
             <Form onSubmit={sendMessage}/>

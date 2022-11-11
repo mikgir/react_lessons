@@ -18,12 +18,12 @@ export const ChatList = ({chats, addChat, deleteChat}) => {
     return (
         <>
             <div style={{
-                width: '20%',
+                width: '13%',
                 height: '100%',
                 alignItems: 'center',
                 padding: '10px',
-                border: '1px solid cadetblue',
-                backgroundColor: 'cadetblue'
+                border: '1px solid gray',
+                backgroundColor: 'gray'
             }}>
                 <ul style={{}}>
                     {chats.map((chat) => (
@@ -36,9 +36,15 @@ export const ChatList = ({chats, addChat, deleteChat}) => {
                             <Link to={`/chats/${chat.id}`}>
                                 {chat.name}
                             </Link>
-                            <i onClick={() => deleteChat(chat.id)}>
+                            <button style={{
+                                width:'25px',
+                                height:'25px',
+                                borderRadius:'5px',
+                                backgroundColor:'red'
+                            }}
+                            onClick={() => deleteChat(chat.id)}>
                                 X
-                            </i>
+                            </button>
                         </li>
                     ))}
                 </ul>
