@@ -4,16 +4,27 @@ import {Link, Outlet} from "react-router-dom";
 import './ChatList.module.css';
 import {Avatar} from "@mui/material";
 import {Form} from "../Form/Form";
+import {useDispatch, useSelector} from "react-redux";
+import {selectChats} from "../../store/chats/selectors";
+import {clearMessages, initMessageForChat} from "../../store/messages/actions";
+import {addChat, deleteChat} from "../../store/chats/actions";
 
 
-export const ChatList = ({chats, addChat, deleteChat}) => {
+export const ChatList = () => {
+    const chats = useSelector(selectChats)
+    const dispatch = useDispatch()
 
     const handleSubmit = (newChatName) => {
         const newChat = {
             name: newChatName,
             id: `chat-${Date.now()}`
         }
-        addChat(newChat)
+        dispatch(addChat(newChat))
+        dispatch(initMessageForChat(newChat.id))
+    }
+    const handleRemoveChat = (id) => {
+        dispatch(deleteChat(id))
+        dispatch(clearMessages(id))
     }
     return (
         <>
@@ -42,7 +53,7 @@ export const ChatList = ({chats, addChat, deleteChat}) => {
                                 borderRadius:'5px',
                                 backgroundColor:'red'
                             }}
-                            onClick={() => deleteChat(chat.id)}>
+                            onClick={handleRemoveChat}>
                                 X
                             </button>
                         </li>

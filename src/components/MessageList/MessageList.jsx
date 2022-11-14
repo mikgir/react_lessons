@@ -11,11 +11,11 @@ export const MessageList = ({messageList}) => {
             <li key={msg.id} style={{
                 textDecoration: 'none'
             }}>
-                <span style={{color: theme === 'dark' ? 'white' : 'black'}}>
+                <span style={{color: theme === 'dark' ? 'black' : 'white'}}>
                     {msg.author}
                 </span>
                 :
-                <span style={{color: theme === 'dark' ? 'white' : 'black'}}>
+                <span style={{color: theme === 'dark' ? 'black' : 'white'}}>
                     {msg.text}
                 </span>
             </li>
