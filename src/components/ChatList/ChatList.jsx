@@ -53,7 +53,7 @@ export const ChatList = () => {
                                 borderRadius:'5px',
                                 backgroundColor:'red'
                             }}
-                            onClick={handleRemoveChat}>
+                            onClick={()=>handleRemoveChat(chat.id)}>
                                 X
                             </button>
                         </li>

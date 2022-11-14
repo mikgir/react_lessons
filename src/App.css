@@ -27,6 +27,12 @@ li, a {
     color: white;
     align-items: center;
 }
+.message{
+    margin: 10px;
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+}
 
 
 

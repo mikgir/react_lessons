@@ -1,24 +1,13 @@
-import React, {useContext} from 'react'
-import {ThemeContext} from "../../utils/ThemeContext";
+import React from 'react'
+import {Message} from "../Message/Message";
 
 export const MessageList = ({messageList}) => {
-    const {theme} = useContext(ThemeContext)
 
-    return <ul style={{
-        textDecoration: 'none'
-    }}>
+    return (<>
         {messageList.map((msg) => (
-            <li key={msg.id} style={{
-                textDecoration: 'none'
-            }}>
-                <span style={{color: theme === 'dark' ? 'black' : 'white'}}>
-                    {msg.author}
-                </span>
-                :
-                <span style={{color: theme === 'dark' ? 'black' : 'white'}}>
-                    {msg.text}
-                </span>
-            </li>
+            <div key={msg.id}>
+                <Message text={msg.text} author={msg.author}/>
+            </div>
         ))}
-    </ul>
+    </>)
 }
