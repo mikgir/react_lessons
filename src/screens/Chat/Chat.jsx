@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useMemo, useRef} from "react";
+import React, {useContext, useMemo, useRef} from "react";
 import {useParams, Navigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -7,7 +7,7 @@ import {Form} from "../../components/Form/Form";
 import {AUTHORS} from "../../utils/constants";
 import {ThemeContext} from "../../utils/ThemeContext";
 import {selectMessageByChatId} from "../../store/messages/selectors";
-import {addMessage} from "../../store/messages/actions";
+import {addMessageWithReply} from "../../store/messages/actions";
 
 
 export const Chat = () => {
@@ -16,36 +16,17 @@ export const Chat = () => {
     const messages = useSelector(getMessages)
     const dispatch = useDispatch()
 
-    // const timeout = useRef()
     const wrapperRef = useRef()
     const {theme} = useContext(ThemeContext)
 
 
     const sendMessage = (text) => {
-        dispatch(addMessage({
+        dispatch(addMessageWithReply({
             author: AUTHORS.human,
             text: text,
             id: `msg-${Date.now()}`
         }, id))
     };
-
-    // useEffect(() => {
-    //     const lastMessage = [messages.length - 1];
-    //     if (lastMessage.author === AUTHORS.human) {
-    //         timeout.current = setTimeout(() => {
-    //             dispatch(
-    //                 addMessage({
-    //                     id: `msg-${Date.now()}`,
-    //                     author: 'ms. robot',
-    //                     text: 'hello friend'
-    //                 }, id)
-    //             )
-    //         }, 1000)
-    //     }
-    //     return () => {
-    //         clearTimeout(timeout.current)
-    //     }
-    // }, [messages])
 
     if (!messages) {
         return <Navigate to='/chats' replace/>
