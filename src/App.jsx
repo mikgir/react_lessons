@@ -5,7 +5,7 @@ import {PublicRoute} from "./components/PublicRoute/PublicRoute";
 
 import './App.css';
 import './index.css';
-import {Header} from "./components/header/Header";
+import {Dashboard} from "./components/dashboard/Dashboard";
 import {Home} from "./screens/Home/Home";
 import {Profile} from "./screens/Profile/Profile";
 import {ChatList} from "./components/ChatList/ChatList";
@@ -33,14 +33,16 @@ export const App = () => {
             <ThemeContext.Provider value={{theme, changeTheme: toggleTheme}}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/' element={<Header/>}>
+                        <Route path='/' element={<Dashboard/>}>
                             <Route path='/' element={<PublicRoute authed={authed}/>}>
                                 <Route path='' element={<Home onAuth={handleLogin}/>}/>
                             </Route>
                             <Route path='/profile' element={<PrivateRoute authed={authed}/>}>
                                 <Route path='' element={<Profile outAuth={handleLogout}/>}/>
                             </Route>
-                            <Route path='/articles' element={<Articles/>}/>
+                            <Route path='/articles' element={<PublicRoute authed={authed}/>}>
+                                <Route path='' element={<Articles/>}/>
+                            </Route>
                             <Route path='/chats'
                                    element={<ChatList/>}>
                                 <Route path=':id' element={<Chat/>}/>

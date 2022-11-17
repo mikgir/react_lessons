@@ -25,10 +25,19 @@ export const Profile = ({outAuth}) => {
 
         <div style={{
             width: '50%',
-            margin: '0 auto'
+            margin: '0 auto',
+            display:'flex',
+            flexDirection: 'column',
         }}>
             <h1>Profile</h1>
-            <button onClick={outAuth}>loguot</button>
+            <button
+                style={{
+                    width:'5rem',
+                    height:'2rem'
+                }}
+                onClick={outAuth}>
+                loguot
+            </button>
             {showName && <span>{name}</span>}<br/>
             <Checkbox
                 onChange={handleChange}

@@ -22,28 +22,56 @@ export const Articles = () => {
 
     return <>
         <section style={{
-            width: '60%',
+            width: '70%',
             height: '100%',
             margin: '0 auto'
         }}>
             <h1>Articles</h1>
-            <button onClick={sendRequest}>new articles</button>
+            <button
+                style={{
+                    width: '5rem',
+                    height: '2rem',
+                    margin: '5rem 0'
+                }}
+                onClick={sendRequest}>
+                renew
+            </button>
             {status === FETCH_STATUSES.REQUEST && <div style={{
-                width: '60%',
+                width: '100%',
                 height: '5rem',
                 margin: '0 auto'
             }}>
                 <CircularProgress/>
             </div>}
             {error && <h4>{error}</h4>}
-            <div>
-                <ul>
-                    {articles.map((article) => (
-                        <li key={article.id}>
-                            {article.title}
-                        </li>
-                    ))}
-                </ul>
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns:'repeat(5, 1fr)',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: '0.5rem',
+            }}>
+                {articles.map((article) => (
+                    <a href={article.url} target={'_blank'} key={article.id}>
+                        <div
+                            style={{
+                                width: '250px',
+                                height: '300px',
+                                display:'flex',
+                                flexDirection:'column',
+                                justifyContent:'space-between',
+                                border: '1px solid black'
+                            }}
+                        >
+
+                            <img src={article.imageUrl} style={{
+                                width: '100',
+                                height: 'auto'
+                            }} alt={article.imageUrl}/>
+                            <h5 style={{textAlign: 'center'}}>{article.title}</h5>
+                        </div>
+                    </a>
+                ))}
             </div>
         </section>
     </>

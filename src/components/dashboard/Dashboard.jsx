@@ -3,7 +3,7 @@ import {List, ListItem} from "@mui/material";
 import React, {useContext} from "react";
 import {ThemeContext} from "../../utils/ThemeContext";
 
-export const Header = () => {
+export const Dashboard = () => {
     const {changeTheme}=useContext(ThemeContext)
     return (
         <header className={'header'}>

@@ -40,6 +40,7 @@ export const getArticles = () => async (dispatch)=>{
 
         const result = await response.json()
         dispatch(getArticlesSuccess(result))
+        console.log(result)
     } catch (e) {
         dispatch(getArticlesFailure(e.message))
     }
