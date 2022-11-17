@@ -27,8 +27,14 @@ export const Articles = () => {
             margin: '0 auto'
         }}>
             <h1>Articles</h1>
-            <button onClick={sendRequest}>get</button>
-            {status === FETCH_STATUSES.REQUEST && <CircularProgress/>}
+            <button onClick={sendRequest}>new articles</button>
+            {status === FETCH_STATUSES.REQUEST && <div style={{
+                width: '60%',
+                height: '5rem',
+                margin: '0 auto'
+            }}>
+                <CircularProgress/>
+            </div>}
             {error && <h4>{error}</h4>}
             <div>
                 <ul>
