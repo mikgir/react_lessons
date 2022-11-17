@@ -10,6 +10,7 @@ import {ChatList} from "./components/ChatList/ChatList";
 import {NotFound} from "./components/pages/NotFoundPage";
 import {Chat} from "./screens/Chat/Chat";
 import {ThemeContext} from "./utils/ThemeContext";
+import {Articles} from "./screens/Articles/Articles";
 
 
 
@@ -27,6 +28,7 @@ export const App = () => {
                             <Route path='/' element={<Header/>}>
                                 <Route index element={<Home/>}/>
                                 <Route path='/profile' element={<Profile/>}/>
+                                <Route path='/articles' element={<Articles/>}/>
                                 <Route path='/chats'
                                        element={<ChatList/>}>
                                     <Route path=':id' element={<Chat/>}/>

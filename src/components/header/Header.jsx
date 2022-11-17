@@ -28,6 +28,12 @@ export const Header = () => {
                 </ListItem>
                 <ListItem>
                     <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
+                             to='/articles'>
+                        Articles
+                    </NavLink>
+                </ListItem>
+                <ListItem>
+                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
                              to='/chats'>
                         Chats
                     </NavLink>
