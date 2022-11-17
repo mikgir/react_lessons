@@ -6,7 +6,7 @@ import {Checkbox} from "@mui/material";
 import {Form} from "../../components/Form/Form";
 import {usePrev} from "../../utils/usePrev";
 
-export const Profile = () => {
+export const Profile = ({outAuth}) => {
     const dispatch = useDispatch()
 
     const name = useSelector(selectName)
@@ -28,6 +28,7 @@ export const Profile = () => {
             margin: '0 auto'
         }}>
             <h1>Profile</h1>
+            <button onClick={outAuth}>loguot</button>
             {showName && <span>{name}</span>}<br/>
             <Checkbox
                 onChange={handleChange}
