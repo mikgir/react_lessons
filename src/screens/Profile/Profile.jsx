@@ -4,15 +4,19 @@ import {setName, toggleCheckbox} from "../../store/profile/actions";
 import {selectName, selectShowName} from '../../store/profile/selectors'
 import {Checkbox} from "@mui/material";
 import {Form} from "../../components/Form/Form";
+import {usePrev} from "../../utils/usePrev";
 
 export const Profile = () => {
     const dispatch = useDispatch()
+
     const name = useSelector(selectName)
     const showName = useSelector(selectShowName)
 
     const handleChange = () => {
         dispatch(toggleCheckbox)
     }
+    const prevName = usePrev(name)
+    console.log(prevName)
 
     const handleSubmit = (text) => {
         dispatch(setName(text))

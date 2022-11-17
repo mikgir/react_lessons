@@ -1,4 +1,6 @@
 import React from "react";
+
+import PropTypes from 'prop-types';
 import {Avatar} from "@mui/material";
 
 export const Message = ({text, author}) => {
@@ -21,4 +23,8 @@ export const Message = ({text, author}) => {
             </div>
         </div>
     )
+}
+Message.propTypes = {
+    text: PropTypes.string,
+    author: PropTypes.string.isRequired
 }
