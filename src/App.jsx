@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {PrivateRoute} from "./components/PrivateRoute/PrivateRoute";
 import {PublicRoute} from "./components/PublicRoute/PublicRoute";
@@ -13,6 +13,8 @@ import {NotFound} from "./components/pages/NotFoundPage";
 import {Chat} from "./screens/Chat/Chat";
 import {ThemeContext} from "./utils/ThemeContext";
 import {Articles} from "./screens/Articles/Articles";
+import {onAuthStateChanged} from "firebase/auth"
+import {auth} from "./services/firebase";
 
 
 export const App = () => {
@@ -28,27 +30,37 @@ export const App = () => {
         setAuthed(false)
 
     }
-        return (
+    useEffect(() => {
+        const unsubscibe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                handleLogin()
+            } else {
+                handleLogout()
+            }
+        })
+        return unsubscibe
+    }, [])
+    return (
         <div className="App">
             <ThemeContext.Provider value={{theme, changeTheme: toggleTheme}}>
                 <BrowserRouter>
+                    <Dashboard/>
                     <Routes>
-                        <Route path='/' element={<Dashboard/>}>
-                            <Route path='/' element={<PublicRoute authed={authed}/>}>
-                                <Route path='' element={<Home onAuth={handleLogin}/>}/>
-                            </Route>
-                            <Route path='/profile' element={<PrivateRoute authed={authed}/>}>
-                                <Route path='' element={<Profile outAuth={handleLogout}/>}/>
-                            </Route>
-                            <Route path='/articles' element={<PublicRoute authed={authed}/>}>
-                                <Route path='' element={<Articles/>}/>
-                            </Route>
-                            <Route path='/chats'
-                                   element={<ChatList/>}>
-                                <Route path=':id' element={<Chat/>}/>
-                            </Route>
-                            <Route path='*' element={<NotFound/>}/>
+                        <Route path='/' element={<PublicRoute authed={authed}/>}>
+                            <Route path='' element={<Home onAuth={handleLogin}/>}/>
+                            <Route path='signup' element={<Home onAuth={handleLogin} isSignUp/>}/>
                         </Route>
+                        <Route path='/profile' element={<PrivateRoute authed={authed}/>}>
+                            <Route path='' element={<Profile outAuth={handleLogout}/>}/>
+                        </Route>
+                        <Route path='/articles' element={<PublicRoute authed={authed}/>}>
+                            <Route path='' element={<Articles/>}/>
+                        </Route>
+                        <Route path='/chats'
+                               element={<ChatList/>}>
+                            <Route path=':id' element={<Chat/>}/>
+                        </Route>
+                        <Route path='*' element={<NotFound/>}/>
                     </Routes>
                 </BrowserRouter>
             </ThemeContext.Provider>

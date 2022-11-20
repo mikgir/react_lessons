@@ -1,41 +1,53 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setName, toggleCheckbox} from "../../store/profile/actions";
+import {
+    initProfileTrack,
+    setName,
+    stopProfileTrack, toggleCheckbox,
+} from "../../store/profile/actions";
 import {selectName, selectShowName} from '../../store/profile/selectors'
 import {Checkbox} from "@mui/material";
 import {Form} from "../../components/Form/Form";
-import {usePrev} from "../../utils/usePrev";
+// import {usePrev} from "../../utils/usePrev";
+import {logOut} from "../../services/firebase";
 
-export const Profile = ({outAuth}) => {
+
+export const Profile = ({onLogout}) => {
     const dispatch = useDispatch()
 
     const name = useSelector(selectName)
     const showName = useSelector(selectShowName)
 
-    const handleChange = () => {
+    const handleChange =  () => {
         dispatch(toggleCheckbox)
     }
-    const prevName = usePrev(name)
-    console.log(prevName)
+    // const prevName = usePrev(name)
+    // console.log(prevName)
 
     const handleSubmit = (text) => {
         dispatch(setName(text))
     }
+    useEffect(() => {
+       dispatch(initProfileTrack())
+        return () => {
+         dispatch(stopProfileTrack())
+        }
+    }, [])
     return (
 
         <div style={{
             width: '50%',
             margin: '0 auto',
-            display:'flex',
+            display: 'flex',
             flexDirection: 'column',
         }}>
             <h1>Profile</h1>
             <button
                 style={{
-                    width:'5rem',
-                    height:'2rem'
+                    width: '5rem',
+                    height: '2rem'
                 }}
-                onClick={outAuth}>
+                onClick={logOut}>
                 loguot
             </button>
             {showName && <span>{name}</span>}<br/>

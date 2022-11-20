@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link, Outlet} from "react-router-dom";
 
 import './ChatList.module.css';
@@ -8,35 +8,51 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectChats} from "../../store/chats/selectors";
 import {clearMessages, initMessageForChat} from "../../store/messages/actions";
 import {addChat, deleteChat} from "../../store/chats/actions";
+import {onValue, set, remove} from "firebase/database";
+import {chatsRef, getChatRefById, getMsgRefById} from "../../services/firebase";
 
 
 export const ChatList = () => {
-    const chats = useSelector(selectChats)
+    const [chats, setChats] = useState([])
+    // const chats = useSelector(selectChats)
     const dispatch = useDispatch()
 
-    const handleSubmit = (newChatName) => {
+    const handleSubmit = async (newChatName) => {
         const newChat = {
             name: newChatName,
             id: `chat-${Date.now()}`
         }
-        dispatch(addChat(newChat))
-        dispatch(initMessageForChat(newChat.id))
+        await set(getChatRefById(newChat.id), newChat)
+        await set(getMsgRefById(newChat.id), {exists: true})
     }
+
     const handleRemoveChat = (id) => {
-        dispatch(deleteChat(id))
-        dispatch(clearMessages(id))
+        remove(getChatRefById(id))
+        set(getMsgRefById(id), null)
+        // dispatch(deleteChat(id))
+        // dispatch(clearMessages(id))
     }
+    useEffect(() => {
+        const unsubscribe = onValue(chatsRef, (snapshot) => {
+            console.log(snapshot.val())
+            setChats(Object.values(snapshot.val() || {}))
+        })
+        return unsubscribe
+    }, [])
     return (
         <>
             <div style={{
-                width: '13%',
-                height: '100%',
+                width: '15%',
+                height: '100vh',
                 alignItems: 'center',
                 padding: '10px',
                 border: '1px solid gray',
                 backgroundColor: 'gray'
             }}>
-                <ul style={{}}>
+                <ul style={{
+                    width: '70%',
+                    height: '80%'
+                }}>
                     {chats.map((chat) => (
                         <li key={chat.id} style={{
                             padding: '10px',
@@ -48,12 +64,12 @@ export const ChatList = () => {
                                 {chat.name}
                             </Link>
                             <button style={{
-                                width:'25px',
-                                height:'25px',
-                                borderRadius:'5px',
-                                backgroundColor:'red'
+                                width: '25px',
+                                height: '25px',
+                                borderRadius: '5px',
+                                backgroundColor: 'red'
                             }}
-                            onClick={()=>handleRemoveChat(chat.id)}>
+                                    onClick={() => handleRemoveChat(chat.id)}>
                                 X
                             </button>
                         </li>
