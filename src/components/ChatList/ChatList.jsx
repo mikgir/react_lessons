@@ -4,10 +4,10 @@ import {Link, Outlet} from "react-router-dom";
 import './ChatList.module.css';
 import {Avatar} from "@mui/material";
 import {Form} from "../Form/Form";
-import {useDispatch, useSelector} from "react-redux";
-import {selectChats} from "../../store/chats/selectors";
-import {clearMessages, initMessageForChat} from "../../store/messages/actions";
-import {addChat, deleteChat} from "../../store/chats/actions";
+// import {useDispatch, useSelector} from "react-redux";
+// import {selectChats} from "../../store/chats/selectors";
+// import {clearMessages, initMessageForChat} from "../../store/messages/actions";
+// import {addChat, deleteChat, initChatTrack} from "../../store/chats/actions";
 import {onValue, set, remove} from "firebase/database";
 import {chatsRef, getChatRefById, getMsgRefById} from "../../services/firebase";
 
@@ -15,7 +15,7 @@ import {chatsRef, getChatRefById, getMsgRefById} from "../../services/firebase";
 export const ChatList = () => {
     const [chats, setChats] = useState([])
     // const chats = useSelector(selectChats)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const handleSubmit = async (newChatName) => {
         const newChat = {
@@ -29,12 +29,10 @@ export const ChatList = () => {
     const handleRemoveChat = (id) => {
         remove(getChatRefById(id))
         set(getMsgRefById(id), null)
-        // dispatch(deleteChat(id))
-        // dispatch(clearMessages(id))
+
     }
     useEffect(() => {
         const unsubscribe = onValue(chatsRef, (snapshot) => {
-            console.log(snapshot.val())
             setChats(Object.values(snapshot.val() || {}))
         })
         return unsubscribe

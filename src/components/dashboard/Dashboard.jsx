@@ -34,6 +34,12 @@ export const Dashboard = () => {
                 </ListItem>
                 <ListItem>
                     <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
+                             to='/posts'>
+                        Posts
+                    </NavLink>
+                </ListItem>
+                <ListItem>
+                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
                              to='/chats'>
                         Chats
                     </NavLink>

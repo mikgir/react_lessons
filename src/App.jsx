@@ -15,6 +15,7 @@ import {ThemeContext} from "./utils/ThemeContext";
 import {Articles} from "./screens/Articles/Articles";
 import {onAuthStateChanged} from "firebase/auth"
 import {auth} from "./services/firebase";
+import {PostList} from "./screens/Poats/PostList";
 
 
 export const App = () => {
@@ -53,8 +54,11 @@ export const App = () => {
                         <Route path='/profile' element={<PrivateRoute authed={authed}/>}>
                             <Route path='' element={<Profile outAuth={handleLogout}/>}/>
                         </Route>
-                        <Route path='/articles' element={<PublicRoute authed={authed}/>}>
+                        <Route path='/articles' element={<PrivateRoute authed={authed}/>}>
                             <Route path='' element={<Articles/>}/>
+                        </Route>
+                        <Route path='/posts' element={<PrivateRoute authed={authed}/>}>
+                            <Route path='' element={<PostList/>}/>
                         </Route>
                         <Route path='/chats'
                                element={<ChatList/>}>

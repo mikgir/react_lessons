@@ -10,3 +10,4 @@ export const deleteChat = (idToDelete) => ({
     type: DELETE_CHAT,
     payload: idToDelete
 })
+

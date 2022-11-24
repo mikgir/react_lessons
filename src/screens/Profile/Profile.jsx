@@ -2,17 +2,17 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     initProfileTrack,
-    setName,
-    stopProfileTrack, toggleCheckbox,
+    setNameFB,
+    stopProfileTrack,
+    toggleCheckbox
 } from "../../store/profile/actions";
 import {selectName, selectShowName} from '../../store/profile/selectors'
 import {Checkbox} from "@mui/material";
 import {Form} from "../../components/Form/Form";
-// import {usePrev} from "../../utils/usePrev";
 import {logOut} from "../../services/firebase";
 
 
-export const Profile = ({onLogout}) => {
+export const Profile = () => {
     const dispatch = useDispatch()
 
     const name = useSelector(selectName)
@@ -21,11 +21,9 @@ export const Profile = ({onLogout}) => {
     const handleChange =  () => {
         dispatch(toggleCheckbox)
     }
-    // const prevName = usePrev(name)
-    // console.log(prevName)
 
     const handleSubmit = (text) => {
-        dispatch(setName(text))
+        dispatch(setNameFB(text))
     }
     useEffect(() => {
        dispatch(initProfileTrack())
