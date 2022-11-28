@@ -11,28 +11,7 @@ li, a {
     flex-direction: row;
 }
 
-.header {
-    width: 10%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-}
 
-.menu_list {
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    border: 1px solid gray;
-    color: white;
-    align-items: center;
-}
-.message{
-    margin: 10px;
-    width: 40%;
-    display: flex;
-    justify-content: flex-start;
-}
 
 
 

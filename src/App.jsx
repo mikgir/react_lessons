@@ -15,7 +15,7 @@ import {ThemeContext} from "./utils/ThemeContext";
 import {Articles} from "./screens/Articles/Articles";
 import {onAuthStateChanged} from "firebase/auth"
 import {auth} from "./services/firebase";
-import {PostList} from "./screens/Poats/PostList";
+import {Posts} from "./screens/Posts/Posts";
 
 
 export const App = () => {
@@ -58,7 +58,7 @@ export const App = () => {
                             <Route path='' element={<Articles/>}/>
                         </Route>
                         <Route path='/posts' element={<PrivateRoute authed={authed}/>}>
-                            <Route path='' element={<PostList/>}/>
+                            <Route path='' element={<Posts/>}/>
                         </Route>
                         <Route path='/chats'
                                element={<ChatList/>}>

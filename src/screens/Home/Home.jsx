@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 
+import styles from './Home.module.css'
+
 import {LoginForm} from "../../components/LoginForm/LoginForm";
 import {logIn, singUp} from "../../services/firebase";
 
@@ -21,12 +23,7 @@ export const Home = ({onAuth, isSignUp}) => {
     }
     return (
         <>
-            <div style={{
-                width: '50%',
-                margin: '0 auto',
-                display: 'flex',
-                flexDirection: 'column',
-            }}>
+            <section className={styles.home_section}>
                 <h1>Home page</h1>
                 <div>
                     <LoginForm onSubmit={handleSubmit}/>
@@ -35,7 +32,7 @@ export const Home = ({onAuth, isSignUp}) => {
                         {isSignUp ? 'to login' : 'to signup'}
                     </Link>
                 </div>
-            </div>
+            </section>
         </>
     )
 }

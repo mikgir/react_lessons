@@ -6,10 +6,13 @@ import {
     stopProfileTrack,
     toggleCheckbox
 } from "../../store/profile/actions";
+
+import styles from './Profile.module.css'
+
 import {selectName, selectShowName} from '../../store/profile/selectors'
 import {Checkbox} from "@mui/material";
 import {Form} from "../../components/Form/Form";
-import {logOut} from "../../services/firebase";
+import {auth, logOut} from "../../services/firebase";
 
 
 export const Profile = () => {
@@ -33,27 +36,24 @@ export const Profile = () => {
     }, [])
     return (
 
-        <div style={{
-            width: '50%',
-            margin: '0 auto',
-            display: 'flex',
-            flexDirection: 'column',
-        }}>
+        <div className={styles.profile_section}>
             <h1>Profile</h1>
             <button
-                style={{
-                    width: '5rem',
-                    height: '2rem'
-                }}
+                className={styles.logout_btn}
                 onClick={logOut}>
                 loguot
             </button>
-            {showName && <span>{name}</span>}<br/>
-            <Checkbox
-                onChange={handleChange}
-                inputProps={{'aria-label': 'controlled'}}
-            />
-            <Form onSubmit={handleSubmit}/>
+            <div className={styles.profile_form}>
+                {showName && <div className={styles.user_data}>
+                    <span>Name - {name}</span>
+                    <span>email - {auth.currentUser.email}</span>
+                </div>}<br/>
+                <Checkbox
+                    onChange={handleChange}
+                    inputProps={{'aria-label': 'controlled'}}
+                />
+                <Form onSubmit={handleSubmit}/>
+            </div>
         </div>
     )
 }

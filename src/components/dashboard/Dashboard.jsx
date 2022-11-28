@@ -1,52 +1,53 @@
 import {NavLink, Outlet} from "react-router-dom"
-import {List, ListItem} from "@mui/material";
 import React, {useContext} from "react";
+
+import styles from './Dashboard.module.css'
+
+import {List, ListItem} from "@mui/material";
 import {ThemeContext} from "../../utils/ThemeContext";
 
 export const Dashboard = () => {
     const {changeTheme}=useContext(ThemeContext)
     return (
-        <header className={'header'}>
-            <List className={'menu_list'} sx={{
+        <section className={styles.dashboard_section}>
+            <List className={styles.menu_list} sx={{
                 padding: '1rem',
 
             }}>
-                <button onClick={changeTheme}>
+                <button
+                    className={styles.theme_toggle}
+                    onClick={changeTheme}
+                >
                     theme
                 </button>
                 <ListItem>
-                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
-                             to='/'>
+                    <NavLink to='/'>
                         Home
                     </NavLink>
                 </ListItem>
                 <ListItem>
-                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
-                             to='/profile'>
+                    <NavLink to='/profile'>
                         Profile
                     </NavLink>
                 </ListItem>
                 <ListItem>
-                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
-                             to='/articles'>
+                    <NavLink to='/articles'>
                         Articles
                     </NavLink>
                 </ListItem>
                 <ListItem>
-                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
-                             to='/posts'>
+                    <NavLink to='/posts'>
                         Posts
                     </NavLink>
                 </ListItem>
                 <ListItem>
-                    <NavLink style={({isActive}) => ({color: isActive ? 'green' : 'white'})}
-                             to='/chats'>
+                    <NavLink to='/chats'>
                         Chats
                     </NavLink>
                 </ListItem>
             </List>
             <Outlet/>
-        </header>
+        </section>
     )
 
 }

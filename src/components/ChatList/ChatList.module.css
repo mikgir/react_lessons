@@ -1,0 +1,25 @@
+.chats_container{
+    margin-left: 10%;
+    width: 15%;
+    height: 100vh;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid gray;
+    background-color: #888585;
+}
+.container_list{
+    width: 70%;
+    height: 80%;
+}
+.list_item {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+.close_btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: red;
+}

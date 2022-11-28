@@ -1,6 +1,7 @@
 import './Form.module.css'
 import React, {useState} from "react";
 import {Button, Input} from "@mui/material";
+import * as styles from './Form.module.css'
 
 
 export const Form = ({onSubmit}) => {
@@ -17,7 +18,10 @@ export const Form = ({onSubmit}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form
+            className={styles.messageForm}
+            onSubmit={handleSubmit}
+        >
         <Input variant={'outlined'} sx={{
             width: '80%'
         }}
@@ -28,7 +32,7 @@ export const Form = ({onSubmit}) => {
         <Button variant={'contained'}
                 sx={{width: '18%'}}
                 type={'submit'}>
-            Add
+            add
         </Button>
     </form>
     )

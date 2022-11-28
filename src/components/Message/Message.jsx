@@ -2,23 +2,16 @@ import React from "react";
 
 import PropTypes from 'prop-types';
 import {Avatar} from "@mui/material";
+import styles from './Message.module.css'
 
 export const Message = ({text, author}) => {
     return (
-        <div className={'message'}>
+        <div className={styles.message_list}>
             <div>
                 <Avatar/>
                 {author}:
             </div>
-            <div style={{
-                height: 'max-content',
-                borderRadius: '25px',
-                backgroundColor: 'blue',
-                marginLeft:'10px',
-                padding: '1rem',
-                color: 'white',
-
-            }}>
+            <div className={styles.message_item}>
                 {text}
             </div>
         </div>

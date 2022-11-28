@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {FETCH_STATUSES} from "../../utils/constants";
-import {CircularProgress} from "@mui/material";
+import {Button, Card, CardActions, CardContent, CardMedia, CircularProgress, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {getArticles} from "../../store/articles/reducer";
 import {selectArticles, selectArticlesError, selectArticlesStatus} from "../../store/articles/selectors";
@@ -46,31 +46,28 @@ export const Articles = () => {
             {error && <h4>{error}</h4>}
             <div style={{
                 display: 'grid',
-                gridTemplateColumns:'repeat(5, 1fr)',
+                gridTemplateColumns: 'repeat(5, 1fr)',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 gap: '0.5rem',
             }}>
                 {articles.map((article) => (
-                    <a href={article.url} target={'_blank'} key={article.id}>
-                        <div
-                            style={{
-                                width: '250px',
-                                height: '300px',
-                                display:'flex',
-                                flexDirection:'column',
-                                justifyContent:'space-between',
-                                border: '1px solid black'
-                            }}
-                        >
-
-                            <img src={article.imageUrl} style={{
-                                width: '100',
-                                height: 'auto'
-                            }} alt={article.imageUrl}/>
-                            <h5 style={{textAlign: 'center'}}>{article.title}</h5>
-                        </div>
-                    </a>
+                    <Card sx={{maxWidth: 345, minHeight: 450}} key={article.id}>
+                        <CardMedia
+                            component="img"
+                            height="140"
+                            image={article.imageUrl}
+                            alt={article.imageUrl}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {article.title}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small"><a href={article.url} target={'_blank'}>Learn More</a></Button>
+                        </CardActions>
+                    </Card>
                 ))}
             </div>
         </section>

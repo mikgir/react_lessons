@@ -1,13 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
 import {useParams, Navigate} from "react-router-dom";
-// import {useDispatch, useSelector} from "react-redux";
 
 import {MessageList} from "../../components/MessageList/MessageList";
 import {Form} from "../../components/Form/Form";
-// import {AUTHORS} from "../../utils/constants";
 import {ThemeContext} from "../../utils/ThemeContext";
-// import {selectMessageByChatId} from "../../store/messages/selectors";
-// import {addMessageWithReply} from "../../store/messages/actions";
+import styles from './Chat.module.css'
+
 import {onValue, push} from "firebase/database";
 import {auth, getMsgListRefById, getMsgRefById} from "../../services/firebase";
 
@@ -45,14 +43,7 @@ export const Chat = () => {
         return <Navigate to='/chats' replace/>
     }
     return (
-        <div style={{
-            width: '80%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'flex-end',
-            padding: '20px',
-            backgroundColor: theme === 'dark' ? 'whitesmoke' : 'black'
-        }}>
+        <div className={styles.chat_section}>
             <MessageList messageList={messages}/>
             <Form onSubmit={sendMessage}/>
         </div>

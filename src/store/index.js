@@ -8,6 +8,7 @@ import {chatsReducer} from "./chats/reducer";
 import {messageReducer} from "./messages/reducer";
 import {articleReducer} from "./articles/reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
+import {postReducer} from "./posts/reducer";
 
 const persistConfig = {
     key: 'messenger',
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     profile: profileReducer,
     chats: chatsReducer,
     messages: messageReducer,
-    articles: articleReducer
+    articles: articleReducer,
+    posts: postReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
