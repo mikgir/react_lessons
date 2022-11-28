@@ -1,0 +1,29 @@
+.login_form {
+    margin: 50px;
+    width: 40rem;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.login_input_label {
+    margin: 5px;
+    width: 90%;
+    height: 1.5rem;
+}
+.login_input {
+    margin: 20px 0;
+    width: 90%;
+    height: 1.5rem;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+.login_btn {
+    width: 90%;
+    height: 1.7rem;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+}
